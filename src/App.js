@@ -11,6 +11,7 @@ function App() {
   const [status, setStatus] = useState("all");
   const [filteredArr, setFilteredArr] = useState([]);
 
+
   //show mode according to previous mode
   useEffect(() => {
     getmodeLocal();
@@ -109,6 +110,7 @@ function App() {
           setTodos={setTodos}
           setFilteredArr={setFilteredArr}
           filteredArr={filteredArr}
+       
         />
 
         <div className="todo-details">

@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-function TodoList({ todos, setTodos, filteredArr }) {
-  const [finalList, setFinalList] = useState([]);
-  console.log(filteredArr);
-  console.log(typeof filteredArr);
-  // setFinalList(filteredArr);
-  // console.log(typeof ...filteredArr);
+function TodoList({ todos, setTodos, filteredArr}) {
 
-  // console.log(filteredArr);
+  //******************************* */
+  // const [finalList, setFinalList] = useState(filteredArr);
+  //************************************** */
+  
   useEffect(() => {
     getLocalTodos();
   }, []);
@@ -16,8 +14,7 @@ function TodoList({ todos, setTodos, filteredArr }) {
   useEffect(() => {
     setLocalTodos();
   }, [todos]);
-
-  console.log(...filteredArr);
+   
   const setLocalTodos = () => {
     localStorage.setItem("todo", JSON.stringify(todos));
   };
@@ -55,18 +52,21 @@ function TodoList({ todos, setTodos, filteredArr }) {
     );
   };
 
-  // const items = [...finalList];
-  // console.log(items);
-  const handleDragEnd = (result) => {
-    // const items = [...finalList];
-    // const [rearrangedItem] = items.splice(result.source.index, 1);
-    // items.splice(result.destination.index, 0, rearrangedItem);
-    // setFinalList(items);
-    // console.log(result);
-  };
+
+  //****************************************************** */
+  // const dragEndHandler = (result) => {
+  //   const items = Array.from(finalList);
+  //   const [reorderedItems] = items.splice(result.source.index, 1);
+  //   items.splice(result.destination.index,0, reorderedItems);
+
+  //   setFinalList(items);
+  // }
+  //****************************************************** */
+
   return (
     <div>
       <div className="todo-list-box">
+      {/* <DragDropContext onDragEnd={dragEndHandler}>  */}
         <DragDropContext>
           <Droppable droppableId="todos-list">
             {(provided) => (
@@ -75,6 +75,7 @@ function TodoList({ todos, setTodos, filteredArr }) {
                 {...provided.droppableProps}
                 ref={provided.innerRef}
               >
+              {/* {finalList.map({text, id, completed}, index) => } */}
                 {filteredArr.map(({ text, id, completed }, index) => (
                   <Draggable draggableId={text} key={id} id={id} index={index}>
                     {(provided) => (
