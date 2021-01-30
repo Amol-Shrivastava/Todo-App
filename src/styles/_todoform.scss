@@ -1,0 +1,22 @@
+.todo-form-section {
+  position: relative;
+  top: 1.5rem;
+  width: 85vw;
+  max-width: 560px;
+}
+
+.todo-form-input {
+  //   border: 2px solid red;
+  width: 100%;
+  padding: 1.2rem;
+  border-radius: 4px;
+  background-color: var(--d-des-blue) !important;
+  border: none;
+  color: var(--l-gray-blue) !important;
+  font-weight: 400;
+  font-size: 0.8rem;
+  &::-webkit-input-placeholder {
+    color: var(--d-gray-blue);
+    font-size: 0.9rem;
+  }
+}
