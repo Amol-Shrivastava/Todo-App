@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
+// import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 
-function TodoList({ todos, setTodos, filteredArr}) {
-
+function TodoList({ todos, setTodos, filteredArr }) {
   //******************************* */
   // const [finalList, setFinalList] = useState(filteredArr);
   //************************************** */
-  
+
   useEffect(() => {
     getLocalTodos();
   }, []);
@@ -14,7 +13,7 @@ function TodoList({ todos, setTodos, filteredArr}) {
   useEffect(() => {
     setLocalTodos();
   }, [todos]);
-   
+
   const setLocalTodos = () => {
     localStorage.setItem("todo", JSON.stringify(todos));
   };
@@ -52,7 +51,6 @@ function TodoList({ todos, setTodos, filteredArr}) {
     );
   };
 
-
   //****************************************************** */
   // const dragEndHandler = (result) => {
   //   const items = Array.from(finalList);
@@ -66,17 +64,17 @@ function TodoList({ todos, setTodos, filteredArr}) {
   return (
     <div>
       <div className="todo-list-box">
-      {/* <DragDropContext onDragEnd={dragEndHandler}>  */}
-        <DragDropContext>
+        {/* <DragDropContext onDragEnd={dragEndHandler}>  */}
+        {/* <DragDropContext>
           <Droppable droppableId="todos-list">
             {(provided) => (
               <ul
                 className="todos-list-ul"
                 {...provided.droppableProps}
-                ref={provided.innerRef}
-              >
-              {/* {finalList.map({text, id, completed}, index) => } */}
-                {filteredArr.map(({ text, id, completed }, index) => (
+                ref={provided.innerRef} */}
+        {/* > */}
+        {/* {finalList.map({text, id, completed}, index) => } */}
+        {/* {filteredArr.map(({ text, id, completed }, index) => (
                   <Draggable draggableId={text} key={id} id={id} index={index}>
                     {(provided) => (
                       <li
@@ -119,14 +117,47 @@ function TodoList({ todos, setTodos, filteredArr}) {
                           </svg>
                         </button>
                       </li>
-                    )}
-                  </Draggable>
+                    )} */}
+        {/* </Draggable>
                 ))}
                 {provided.placeholder}
               </ul>
             )}
           </Droppable>
-        </DragDropContext>
+        </DragDropContext> */}
+
+        <ul className="todos-list-ul">
+          {filteredArr.map(({ text, id, completed }) => (
+            <li className="todo-item" key={id} id={id}>
+              <div className={`circle ${completed ? "checked" : "unchecked"}`}>
+                {completed ? (
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M0 11.522l1.578-1.626 7.734 4.619 13.335-12.526 1.353 1.354-14 18.646z" />
+                  </svg>
+                ) : (
+                  ""
+                )}
+              </div>
+
+              <span
+                className={`text ${completed ? "line_over" : ""}`}
+                onClick={crossHandler}
+              >
+                {text}
+              </span>
+
+              <button className="todo-delBtn" onClick={deleteHandler}>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fillRule="evenodd"
+                  clipRule="evenodd"
+                >
+                  <path d="M12 11.293l10.293-10.293.707.707-10.293 10.293 10.293 10.293-.707.707-10.293-10.293-10.293 10.293-.707-.707 10.293-10.293-10.293-10.293.707-.707 10.293 10.293z" />
+                </svg>
+              </button>
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   );
