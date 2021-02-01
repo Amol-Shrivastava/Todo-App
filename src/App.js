@@ -153,7 +153,7 @@ function App() {
             Completed
           </button>
         </div>
-        <span className="drag_text"> Drag and drop to reorder list</span>
+        {/* <span className="drag_text"> Drag and drop to reorder list</span> */}
       </div>
     </div>
   );
